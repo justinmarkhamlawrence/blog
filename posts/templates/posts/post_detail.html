@@ -8,20 +8,54 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   <body>
-
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mynav">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">Justin's Blog</a>
+        </div>
+        <div class="collapse navbar-collapse" id="mynav">
+          <ul class="nav navbar-nav">
+            <li><a href="">About</a></li>
+            <li><a href="http://www.twitter.com/J_M_Lawrence" target="_blank">Twitter</a></li>
+          </ul>
+      </div>
+    </nav>
 
 
     <div class="container">
 
       <h1 class="text-center">{{ post.title }}</h1>
       <br>
-      {{post.pub_date_pretty}}
+      <h4><span class="glyphicon glyphicon-time" aria-hidden="true"></span>{{post.pub_date_pretty}}</h4>
       <br>
-      <img src="{{ post.image.url }}" alt="">
+      <img class="img-responsive center-block" style="max-height:400px;" src="{{ post.image.url }}" alt="">
       <br>
       {{post.body}}
       <br>
       <br>
+      <div id="disqus_thread"></div>
+      <script>
+
+
+
+
+      var disqus_config = function () {
+      this.page.identifier = 'post-{{ post.id }}'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://justinsblog-1.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
 
   </body>
